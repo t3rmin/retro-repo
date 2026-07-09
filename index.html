@@ -89,7 +89,6 @@
     </style>
 </head>
 <body>
-
     <div class="container">
         <h1>🎮 Web Arcade Dashboard</h1>
         <div class="subtitle">Select a game below to launch it instantly in your browser.</div>
@@ -201,58 +200,9 @@
                     <p class="game-desc">Defend humanoids from alien abduction across a fast, horizontally scrolling space landscape.</p>
                 </div>
                 <a class="play-btn" href="defender/">Play Game</a>
-            </div>
+                            </div>
         </div>
     </div>
-            <!-- 11. Missile Command -->
-            <div class="game-row">
-                <div class="game-info">
-                    <p class="game-title">Missile Command <span class="game-year">(1980)</span></p>
-                    <p class="game-desc">Defend your six cities from incoming nuclear missiles using three anti-missile defense batteries.</p>
-                </div>
-                <a class="play-btn" href="missile-command/">Play Game</a>
-            </div>
-
-            <!-- 12. Defender -->
-            <div class="game-row">
-                <div class="game-info">
-                    <p class="game-title">Defender <span class="game-year">(1981)</span></p>
-                    <p class="game-desc">Defend humanoids from alien abduction across a fast, horizontally scrolling space landscape.</p>
-                </div>
-                <a class="play-btn" href="defender/">Play Game</a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Submit when user presses Enter key
-        document.getElementById('pass-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                checkPassword();
-            }
-        });
-
-        async function checkPassword() {
-            const input = document.getElementById('pass-input').value;
-            const errorMsg = document.getElementById('error-msg');
-            
-            // Hash the text input to avoid putting the real password string in source code
-            const msgBuffer = new TextEncoder().encode(input);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hashedInput = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-
-            // Matches SHA-256 hash of "apexretro-__"
-            const expectedHash = '4b1767664ff4b8dfcb056b7f369ee6287da2369fc6507ea9940177dfd2f6ff96';
-
-            if (hashedInput === expectedHash) {
-                document.getElementById('gate-screen').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-            } else {
-                errorMsg.textContent = 'Invalid key. Please try again.';
-                document.getElementById('pass-input').value = '';
-            }
-        }
-    </script>
 </body>
 </html>
+ 
