@@ -200,7 +200,7 @@
                     <p class="game-desc">Defend humanoids from alien abduction across a fast, horizontally scrolling space landscape.</p>
                 </div>
                 <a class="play-btn" href="defender/">Play Game</a>
-                            </div>
+</div>
         </div>
     </div>
     <!-- 1. THE PASSWORD GATE CONTAINER -->
@@ -215,79 +215,81 @@
         </div>
     </div>
 
-    <!-- 2. THE VISUAL STYLES AND MASKING SCRIPT -->
+    <!-- 2. THE VISUAL STYLES AND LAYOUT CONTROL -->
     <style>
         #gate-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #0d1117;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background-color: #0d1117 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            z-index: 999999 !important;
         }
         .gate-box {
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-            max-width: 400px;
-            width: 90%;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: #161b22 !important;
+            border: 1px solid #30363d !important;
+            border-radius: 8px !important;
+            padding: 30px !important;
+            text-align: center !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+            max-width: 400px !important;
+            width: 90% !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
         }
         .gate-box h2 {
-            color: #58a6ff;
-            margin-top: 0;
-            font-size: 1.5rem;
+            color: #58a6ff !important;
+            margin-top: 0 !important;
+            font-size: 1.5rem !important;
         }
         .gate-box input[type="password"] {
-            width: 80%;
-            padding: 10px;
-            background-color: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            color: #ffffff;
-            font-size: 1rem;
+            width: 80% !important;
+            padding: 10px !important;
+            background-color: #0d1117 !important;
+            border: 1px solid #30363d !important;
+            border-radius: 6px !important;
+            color: #ffffff !important;
+            font-size: 1rem !important;
             text-align: center;
-            margin-bottom: 15px;
-            outline: none;
+            margin-bottom: 15px !important;
+            outline: none !important;
         }
         .gate-box input[type="password"]:focus {
-            border-color: #58a6ff;
+            border-color: #58a6ff !important;
         }
         .gate-box button {
-            background-color: #21262d;
-            color: #58a6ff;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            padding: 10px 24px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s;
+            background-color: #21262d !important;
+            color: #58a6ff !important;
+            border: 1px solid #30363d !important;
+            border-radius: 6px !important;
+            padding: 10px 24px !important;
+            font-weight: 600 !important;
+            font-size: 1rem !important;
+            cursor: pointer !important;
+            transition: all 0.2s !important;
         }
         .gate-box button:hover {
-            background-color: #58a6ff;
-            color: #ffffff;
-            border-color: #58a6ff;
+            background-color: #58a6ff !important;
+            color: #ffffff !important;
+            border-color: #58a6ff !important;
         }
         #error-msg {
-            color: #ff7b72;
-            margin-top: 10px;
-            font-size: 0.9rem;
-            min-height: 20px;
+            color: #ff7b72 !important;
+            margin-top: 10px !important;
+            font-size: 0.9rem !important;
+            min-height: 20px !important;
         }
-        /* Immediately hide the dashboard container until password is correct */
+        /* Hide the container dashboard layout globally until unlocked */
         .container {
             display: none !important;
         }
     </style>
+
+    <!-- 3. DIRECT MATCH VALIDATION SCRIPT -->
     <script>
         // Submit when user presses Enter key inside the input box
         document.getElementById('pass-input').addEventListener('keypress', function(e) {
@@ -300,10 +302,10 @@
             const input = document.getElementById('pass-input').value;
             const errorMsg = document.getElementById('error-msg');
 
-            // Directly matches your key string
+            // Exact match validation
             if (input === "apexretro-_-") {
-                // Hide the lock screen
-                document.getElementById('gate-screen').style.display = 'none';
+                // Completely hide the lock screen
+                document.getElementById('gate-screen').style.setProperty('display', 'none', 'important');
                 
                 // Reveal the dashboard layout
                 const dashboard = document.querySelector('.container');
