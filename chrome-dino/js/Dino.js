@@ -1,5 +1,5 @@
 class Dino {
-    constructor(el,options) {
+    constructor(el, options) {
         this.canvas = el;
         this.canvas.width = window.innerWidth > options.maxWidth ? options.maxWidth : window.innerWidth;
         this.canvas.height = 150;
@@ -13,26 +13,24 @@ class Dino {
             { sx: 1335, w: 75 },
             { sx: 1510, w: 75 },
             { sx: 1598, w: 75 },
-        ]
+        ];
         this.dino = 0;
     }
     init() {
-        // Init Sprite
-        this.sprite = new Image;
+        this.sprite = new Image();
         this.sprite.src = "images/sprite.png";
         
-        // FIX 2: Wait for the image to completely load before starting the loops
+        // Starts the engine looping ONLY after image assets fully arrive
         this.sprite.onload = () => {
             this.render();
         };
     }
     drawDino() {
-        this.ctx.drawImage(this.sprite, this.dinos[this.dino].sx, 0, 95, 100, 80, this.canvas.height-75, 75, 75)
+        this.ctx.drawImage(this.sprite, this.dinos[this.dino].sx, 0, 95, 100, 80, this.canvas.height - 75, 75, 75);
     }
     drawBackground() {
-        // Draw Ground
-        this.ctx.drawImage(this.sprite, 0, this.sprite.height-30, this.sprite.width, 30, this.backgroundDx, this.canvas.height-30, this.canvas.width, 30)
-        this.ctx.drawImage(this.sprite, 0, this.sprite.height-30, this.sprite.width, 30, this.canvas.width+this.backgroundDx, this.canvas.height-30, this.canvas.width, 30)
+        this.ctx.drawImage(this.sprite, 0, this.sprite.height - 30, this.sprite.width, 30, this.backgroundDx, this.canvas.height - 30, this.canvas.width, 30);
+        this.ctx.drawImage(this.sprite, 0, this.sprite.height - 30, this.sprite.width, 30, this.canvas.width + this.backgroundDx, this.canvas.height - 30, this.canvas.width, 30);
     }
     draw() {
         this.drawBackground();
@@ -40,18 +38,18 @@ class Dino {
     }
     updateBackground() {
         this.backgroundDx -= this.speed;
-        // Go back to first 
-        if(this.backgroundDx < -this.canvas.width) this.backgroundDx = 0;
+        if (this.backgroundDx <= -this.canvas.width) {
+            this.backgroundDx = 0;
+        }
     }
     updateDino() {
-        this.dino = this.dino < this.dinos.length-1 ? this.dino+1 : 0;
+        this.dino = this.dino < this.dinos.length - 1 ? this.dino + 1 : 0;
     }
     update() {
-        this.updateBackground() 
+        this.updateBackground(); 
         this.updateDino();
     }
     render() {
-        // FIX 1: Corrected canvas height clearing parameter
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.draw();
         this.update();
